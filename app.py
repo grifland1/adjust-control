@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-from scipy.linalg import lstsq
 import numpy as np
 from io import StringIO
 from scipy.optimize import minimize
@@ -40,7 +39,7 @@ def load_data(file):
 
 def plot_data(df1, df2, df3):
     fig, ax = plt.subplots()
-    ax.scatter(df1['easting'], df1['northing'], color='blue', label='Fields')
+    ax.scatter(df1['easting'], df1['northing'], color='blue', label='Field')
     ax.scatter(df3['easting'], df3['northing'], color='green', label='Adjusted')
     ax.scatter(df2['easting'], df2['northing'], color='red', label='Control')
     ax.set_xlabel('Easting')
@@ -71,7 +70,7 @@ def validate_points_dataframe(df):
 # UI
 ########################################################################################
 
-st.title('Field and Control Scatter Plot')
+st.title('Field vs Control Scatter Plot')
 
 st.sidebar.header('Upload CSV Files')
 field_file = st.sidebar.file_uploader("Choose Field CSV file", type=['csv'])

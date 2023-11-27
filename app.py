@@ -101,6 +101,10 @@ if field_file and control_file:
     control_data_filtered = control_data[~control_data.pt_number.isin(outlier_detection.pt_number)]
     field_data_filtered = field_data_filtered[~field_data_filtered.pt_number.isin(outlier_detection.pt_number)]
     
+    # Create a copy of field_data for transformation
+    adjusted_data = field_data.copy()
+    adjusted_data[["northing", "easting"]] = tp
+    
     control_points=control_data_filtered[["northing","easting"]].values
     field_points=field_data_filtered[["northing","easting"]].values
     transformed_points, transformation_params = perform_adjustment(field_points, control_points)

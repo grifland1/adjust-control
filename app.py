@@ -112,10 +112,10 @@ if field_file and control_file:
     st.write("Control Data")
     st.dataframe(control_data,hide_index=True,use_container_width=True)
     
-    st.write("Field Data Sample")
+    st.write("Field Data matches")
     st.dataframe(field_data_filtered,hide_index=True,use_container_width=True)
 
-    st.write("Adjusted Data Sample")
+    st.write("Adjusted Data")
     adjusted_data_filtered=adjusted_data[adjusted_data.pt_number.isin (control_data.pt_number)]
     st.dataframe(adjusted_data_filtered,hide_index=True,use_container_width=True)
 

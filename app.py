@@ -72,7 +72,7 @@ def validate_points_dataframe(df):
 st.title('Adjust Field GCPs to Project Control Coordinate System')
 
 st.sidebar.header('Upload CSV Files')
-st.sidebar.header('must include pt_number,northing,easting in header row')
+st.sidebar.header('each file must include pt_number,northing,easting in header row')
 field_file = st.sidebar.file_uploader("Choose Field CSV file", type=['csv'])
 control_file = st.sidebar.file_uploader("Choose Control CSV file", type=['csv'])
 

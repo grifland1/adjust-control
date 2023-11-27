@@ -69,7 +69,7 @@ def validate_points_dataframe(df):
 # UI
 ########################################################################################
 
-st.title('Field GCP vs Control Scatter Plot')
+st.title('Adjust Field GCP's to Project Control w/ Scatter Plot')
 
 st.sidebar.header('Upload CSV Files')
 field_file = st.sidebar.file_uploader("Choose Field CSV file", type=['csv'])

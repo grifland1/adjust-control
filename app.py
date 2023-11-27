@@ -128,4 +128,4 @@ if field_file and control_file:
                        file_name='adjusted.csv',
                        mime='text/csv')
 else:
-    st.warning('Please upload both CSV files.')
+    st.warning('Upload both field and control CSV files')

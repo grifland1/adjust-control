@@ -33,7 +33,6 @@ def least_squares_transformation(params, points1, points2):
     # Compute the sum of squared differences
     return np.sum((transformed_points - points2) ** 2)
 
-
 def load_data(file):
     return pd.read_csv(file)
 
@@ -64,7 +63,6 @@ def validate_points_dataframe(df):
     if "pt_number" not in df.columns:
         raise "pt_number column required"
 
-
 ########################################################################################
 # UI
 ########################################################################################
@@ -79,6 +77,7 @@ control_file = st.sidebar.file_uploader("Choose Control CSV file", type=['csv'])
 if field_file and control_file:
     field_data = load_data(field_file)
     control_data = load_data(control_file)
+    adjusted_data = load_data(field_file)
 
     validate_points_dataframe(field_data)
     validate_points_dataframe(control_data)
@@ -86,10 +85,6 @@ if field_file and control_file:
     control_points=control_data[["northing","easting"]].values
     field_data_filtered=field_data[field_data.pt_number.isin (control_data.pt_number)]
     field_points=field_data_filtered[["northing","easting"]].values
-
-    # Create a copy of field_data for transformation
-    adjusted_data = field_data.copy()
-    adjusted_data[["northing", "easting"]] = tp
     
     # do first transformation to find outliers
     transformed_points, transformation_params = perform_adjustment(field_points, control_points)
@@ -108,13 +103,9 @@ if field_file and control_file:
     control_points=control_data_filtered[["northing","easting"]].values
     field_points=field_data_filtered[["northing","easting"]].values
     transformed_points, transformation_params = perform_adjustment(field_points, control_points)
-    tp=transform_points(field_data.copy[["northing","easting"]],transformation_params[0],
+    tp=transform_points(adjusted_data[["northing","easting"]],transformation_params[0],
                         transformation_params[1],[transformation_params[2],transformation_params[3]])
 
-    adjusted_data=field_data
-    adjusted_data[["northing","easting"]]=tp
-
-    
     st.write("Control Data")
     st.dataframe(control_data,hide_index=True,use_container_width=True)
     

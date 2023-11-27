@@ -106,8 +106,10 @@ if field_file and control_file:
     transformed_points, transformation_params = perform_adjustment(field_points, control_points)
     tp=transform_points(field_data[["northing","easting"]],transformation_params[0],
                         transformation_params[1],[transformation_params[2],transformation_params[3]])
-    adjusted_data=field_data
-    adjusted_data[["northing","easting"]]=tp
+    
+    # Create a copy of field_data for transformation
+    adjusted_data = field_data.copy()
+    adjusted_data[["northing", "easting"]] = tp
 
     st.write("Control Data")
     st.dataframe(control_data,hide_index=True,use_container_width=True)

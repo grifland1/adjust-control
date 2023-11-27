@@ -86,6 +86,7 @@ if field_file and control_file:
     control_points=control_data[["northing","easting"]].values
     field_data_filtered=field_data[field_data.pt_number.isin (control_data.pt_number)]
     field_points=field_data_filtered[["northing","easting"]].values
+    adjusted_data = field_data.copy
     
     # do first transformation to find outliers
     transformed_points, transformation_params = perform_adjustment(field_points, control_points)
@@ -108,12 +109,9 @@ if field_file and control_file:
     control_points=control_data_filtered[["northing","easting"]].values
     field_points=field_data_filtered[["northing","easting"]].values
     transformed_points, transformation_params = perform_adjustment(field_points, control_points)
-    tp=transform_points(field_data[["northing","easting"]],transformation_params[0],
+    tp=transform_points(field_data.copy[["northing","easting"]],transformation_params[0],
                         transformation_params[1],[transformation_params[2],transformation_params[3]])
-    
-    # Create a copy of field_data for transformation
-    adjusted_data = field_data.copy()
-    adjusted_data[["northing", "easting"]] = tp
+
 
     st.write("Control Data")
     st.dataframe(control_data,hide_index=True,use_container_width=True)

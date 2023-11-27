@@ -22,14 +22,14 @@ def perform_adjustment(points1, points2):
     initial_guess = [1, 0, 0, 0]  # Initial scale, rotation, translation x, translation y
     result = minimize(least_squares_transformation, initial_guess, args=(points1, points2))
     scale, rotation, tx, ty = result.x
-    transformed_points = transform_points(points1, scale, rotation, [tx, ty])
+    transformed_points = transform_points(points2, scale, rotation, [tx, ty])
 
     # Generating a report or output
     return transformed_points, (scale, rotation, tx, ty)
 
 def least_squares_transformation(params, points1, points2):
     scale, rotation, tx, ty = params
-    transformed_points = transform_points(points1, scale, rotation, [tx, ty])
+    transformed_points = transform_points(points2, scale, rotation, [tx, ty])
     # Compute the sum of squared differences
     return np.sum((transformed_points - points2) ** 2)
 

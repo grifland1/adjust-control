@@ -118,7 +118,7 @@ if field_file and control_file:
     st.write("Adjusted Data")
     adjusted_data_filtered=adjusted_data[adjusted_data.pt_number.isin (control_data.pt_number)]
     st.dataframe(adjusted_data_filtered,hide_index=True,use_container_width=True)
-    st.write ("Scale:"transformation_params[0],"Rotation:"transformation_params[1],"Translation:"[transformation_params[2],transformation_params[3]])
+    st.write ("Scale:")(transformation_params[0])("Rotation:")(transformation_params[1])("Translation:")([transformation_params[2],transformation_params[3]])
     
     st.write("Scatter Plot")
     fig = plot_data(field_data, control_data, adjusted_data)

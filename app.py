@@ -65,12 +65,11 @@ def validate_points_dataframe(df):
         raise "pt_number column required"
 
 
-
 ########################################################################################
 # UI
 ########################################################################################
 
-st.title('Field vs Control Scatter Plot')
+st.title('Field GCP vs Control Scatter Plot')
 
 st.sidebar.header('Upload CSV Files')
 field_file = st.sidebar.file_uploader("Choose Field CSV file", type=['csv'])

@@ -92,7 +92,7 @@ if field_file and control_file:
     outlier_detection = field_data_filtered
     outlier_detection[["northing","easting"]] = transformed_points
     outlier_detection["error"] = np.sqrt((outlier_detection["northing"]-control_data["northing"])**2 + (outlier_detection["easting"]-control_data["easting"])**2)
-    outlier_detection = outlier_detection.sort_values(by='error', ascending=False)
+    outlier_detection = outlier_detection.sort_values(by='hz_error', ascending=False)
     num_to_remove = int(len(outlier_detection) * 0.26)
     outlier_detection = outlier_detection.iloc[:num_to_remove]
     control_data["dropped"] = control_data.pt_number.isin(outlier_detection.pt_number)
@@ -106,7 +106,7 @@ if field_file and control_file:
     transformed_points, transformation_params = perform_adjustment(field_points, control_points)
     tp=transform_points(field_data[["northing","easting"]],transformation_params[0],
                         transformation_params[1],[transformation_params[2],transformation_params[3]])
-    adjusted_data=field_data
+    
     adjusted_data[["northing","easting"]]=tp
 
     st.write("Control Data")
